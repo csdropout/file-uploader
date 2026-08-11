@@ -63,9 +63,33 @@ export const postSignUp = [
           hash: hash,
         },
       });
-      res.redirect("/");
+      res.redirect("/login");
     } catch (err) {
       next(err);
     }
   },
 ];
+
+export function getLogin(req, res) {
+  res.render("login");
+}
+
+export function postLogin(req, res, next) {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+
+    if (!user) {
+      return res.render("login", {
+        errors: [{ msg: info.message }],
+      });
+    }
+
+    req.logIn(user, (err) => {
+      return next(err);
+    });
+
+    return res.redirect("/");
+  })(req, res, next);
+}

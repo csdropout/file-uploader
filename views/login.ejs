@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="form-card-container">
+    <h1>WaffleDrive</h1>
+    <p>Welcome back. Please log in.</p>
+    <%- include('partials/errors.ejs') %>
+    <form method="POST">
+      <div class="form-row">
+        <label for="username">USERNAME</label>
+        <input type="text" name="username" id="username" required>
+      </div>
+      <div class="form-row">
+        <label for="passowrd">PASSWORD</label>
+        <input type="password" name="password" id="password" required>
+      </div>
+      <button type="submit">Log in</button>
+      <p>Don't have an account? <a href="/sign-up">Sign up</a></p>
+    </form>
+  </div>
+</body>
+
+</html>
