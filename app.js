@@ -2,8 +2,9 @@ import "dotenv/config";
 import express from "express";
 import session from "express-session";
 import passport from "passport";
-import prisma from "./lib/prisma.js";
+import { prisma } from "./lib/prisma.js";
 import { PrismaSessionStore } from "@quixo3/prisma-session-store";
+import authRouter from "./routes/authRouter.js";
 
 const app = express();
 app.set("views", "./views");
@@ -27,6 +28,11 @@ app.use(
     }),
   }),
 );
+
+app.get("/", (req, res) => {
+  res.send("Welcome to Waffle Drive!");
+});
+app.use("/", authRouter);
 
 const port = process.env.PORT || 3000;
 app.listen(port, (err) => {
