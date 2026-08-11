@@ -11,3 +11,49 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model User {
+  id       String @id @default(uuid())
+  name     String
+  username String @unique
+  hash     String
+
+  files   File[]
+  folders Folder[]
+}
+
+model File {
+  id         String   @id @default(uuid())
+  size       Int
+  name       String
+  url        String
+  uploadedAt DateTime @default(now())
+
+  folder   Folder? @relation(fields: [folderId], references: [id])
+  folderId String?
+
+  owner   User   @relation(fields: [ownerId], references: [id])
+  ownerId String
+}
+
+model Folder {
+  id         String   @id @default(uuid())
+  name       String
+  uploadedAt DateTime @default(now())
+  files      File[]
+
+  owner   User?   @relation(fields: [ownerId], references: [id])
+  ownerId String?
+
+  parent   Folder? @relation("FolderOrder", fields: [parentId], references: [id])
+  parentId String?
+
+  children Folder[] @relation("FolderOrder")
+}
+
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String
+  expiresAt DateTime
+}
