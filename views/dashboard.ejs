@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WaffleDrive</title>
+  <script src="scripts/modals.js" defer></script>
+</head>
+
+<body>
+  <%- include('partials/header.ejs') %>
+  <button id="open-folder-dialog-btn">New Folder</button>
+  <div class="dashboard-content">
+    <div class="dashboard-headers">
+      <span>Name</span>
+      <span>Size</span>
+      <span>Uploaded</span>
+    </div>
+    <% if (locals.folders) { %>
+    <% folders.forEach(folder => { %>
+    <div class="folder-item">
+      <span><%= folder.name %></span>
+      <span><%= folder.size %></span>
+      <span><%= folder.uploadedAt.toLocaleString() %></span>
+    </div>
+    <% }) %>
+    <% } %>
+    <% if (locals.files) { %>
+    <% files.forEach(file => { %>
+    <span><%= file.name %></span>
+    <span><%= file.size %></span>
+    <span><%= file.uploadedAt %></span>
+    <% }) %>
+    <% } %>
+    <%- include('partials/create-folder.ejs') %>
+  </div>
+</body>
+
+</html>
