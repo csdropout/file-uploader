@@ -1,6 +1,23 @@
 import { prisma } from "../lib/prisma.js";
 
-export async function getFolder(req, res, next) {}
+export async function getFolder(req, res, next) {
+  try {
+    const folderId = req.params.id || null;
+    const userId = req.user.id;
+
+    const folders = await prisma.folder.findMany({
+      where: { parentId: folderId, ownerId: userId },
+    });
+    console.log(folders);
+    const files = await prisma.file.findMany({
+      where: { ownerId: userId, folderId: folderId },
+    });
+    console.log(files);
+  } catch (err) {
+    next(err);
+  }
+}
+
 export async function createFolder(req, res, next) {
   try {
     const folderName = req.body.name;
