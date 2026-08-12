@@ -34,7 +34,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get("/", (req, res) => {
-  res.send("Welcome to Waffle Drive!");
+  res.render("index");
 });
 app.use("/", authRouter);
 
