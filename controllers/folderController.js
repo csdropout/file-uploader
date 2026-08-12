@@ -13,6 +13,12 @@ export async function getFolder(req, res, next) {
       where: { ownerId: userId, folderId: folderId },
     });
     console.log(files);
+
+    res.render("dashboard", {
+      folders,
+      files,
+      folderId,
+    });
   } catch (err) {
     next(err);
   }
