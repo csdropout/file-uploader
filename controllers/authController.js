@@ -87,7 +87,11 @@ export function postLogin(req, res, next) {
     }
 
     req.logIn(user, (err) => {
-      return next(err);
+      if (err) {
+        return next(err);
+      }
+
+      return res.redirect("/");
     });
 
     return res.redirect("/");
