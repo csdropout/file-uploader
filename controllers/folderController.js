@@ -44,4 +44,17 @@ export async function createFolder(req, res, next) {
     next(err);
   }
 }
-export async function deleteFolder(req, res, next) {}
+export async function deleteFolder(req, res, next) {
+  try {
+    const folderId = req.params.id;
+    const userId = req.user.id;
+
+    const deleteFolder = await prisma.folder.delete({
+      where: { id: folderId, ownerId: userId },
+    });
+
+    res.redirect("/drive");
+  } catch (err) {
+    next(err);
+  }
+}
