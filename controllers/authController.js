@@ -93,7 +93,14 @@ export function postLogin(req, res, next) {
 
       return res.redirect("/");
     });
-
-    return res.redirect("/");
   })(req, res, next);
+}
+
+export function logOut(req, res, next) {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/login");
+  });
 }

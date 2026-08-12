@@ -8,6 +8,12 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <header>
+    <h1>WaffleDrive</h1>
+    <form method="post" action="/logout">
+      <button type="submit">Log Out</button>
+    </form>
+  </header>
   <%- include('partials/create-folder') %>
   <button id="open-folder-dialog-btn">New folder</button>
 </body>
