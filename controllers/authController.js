@@ -91,7 +91,7 @@ export function postLogin(req, res, next) {
         return next(err);
       }
 
-      return res.redirect("/");
+      return res.redirect("/drive");
     });
   })(req, res, next);
 }
