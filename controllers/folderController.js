@@ -20,3 +20,4 @@ export async function createFolder(req, res, next) {
     next(err);
   }
 }
+export async function deleteFolder(req, res, next) {}

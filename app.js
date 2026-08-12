@@ -7,6 +7,7 @@ import { prisma } from "./lib/prisma.js";
 import { PrismaSessionStore } from "@quixo3/prisma-session-store";
 import authRouter from "./routes/authRouter.js";
 import folderRouter from "./routes/folderRouter.js";
+import fileRouter from "./routes/fileRouter.js";
 
 const app = express();
 app.set("views", "./views");
@@ -39,7 +40,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/", authRouter);
-app.use("/folders", folderRouter);
+app.use("/drive", folderRouter);
+app.use("/drive/files", fileRouter);
 
 const port = process.env.PORT || 3000;
 app.listen(port, (err) => {

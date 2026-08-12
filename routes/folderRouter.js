@@ -2,8 +2,9 @@ import { Router } from "express";
 import * as folderController from "../controllers/folderController.js";
 const folderRouter = Router();
 
-folderRouter.post("/", folderController.createFolder);
-// folderRouter.get("/", folderController.getFolder);
-// folderRouter.get("/:id", folderController.getFolder);
+folderRouter.get("/", folderController.getFolder);
+folderRouter.get("/folders/:id", folderController.getFolder);
+folderRouter.post("/folders", folderController.createFolder);
+folderRouter.delete("/folders/:id", folderController.deleteFolder);
 
 export default folderRouter;
