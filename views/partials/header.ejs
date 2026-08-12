@@ -1,0 +1,13 @@
+<header>
+  <a href="/drive">WaffleDrive</a>
+  <% if (locals.user) { %>
+  <form method="post" action="/logout">
+    <button type="submit">Log Out</button>
+  </form>
+  <% } else { %>
+  <nav>
+    <a href="/sign-up">Sign Up</a>
+    <a href="/login">Log In</a>
+  </nav>
+  <% } %>
+</header>
