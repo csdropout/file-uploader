@@ -1,8 +1,9 @@
 <dialog id="folder-dialog">
-  <form method="post" action="create-folder">
+  <form method="post" action="/folders">
     <label for="name">New folder</label>
     <input type="text" name="name" id="name" required>
     <button id="close-folder-dialog-btn" type="button">Cancel</button>
+    <input type="text" name="parentId" value="<%= locals.currentFolderId%>" hidden>
     <button type="submit">Create</button>
   </form>
 </dialog>
