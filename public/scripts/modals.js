@@ -48,3 +48,25 @@ fileDialog.addEventListener("click", (e) => {
     fileDialog.close();
   }
 });
+// -------- File dialog ----------
+
+// -------- Rename folder dialog ---------
+const renameFolderDialog = document.querySelector("#rename-folder-dialog");
+const closeRenameFolderDialogBtn = document.querySelector(
+  "#close-rename-folder-dialog-btn",
+);
+closeRenameFolderDialogBtn.addEventListener("click", () => {
+  renameDialog.close();
+});
+
+renameFolderDialog.addEventListener("click", (e) => {
+  const rect = renameFolderDialog.getBoundingClientRect();
+  const isInDialog =
+    rect.top <= e.clientY &&
+    rect.left <= e.clientX &&
+    e.clientX <= rect.right &&
+    e.clientY <= rect.bottom;
+  if (!isInDialog) {
+    renameFolderDialog.close();
+  }
+});

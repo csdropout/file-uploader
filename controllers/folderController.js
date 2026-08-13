@@ -58,3 +58,15 @@ export async function deleteFolder(req, res, next) {
     next(err);
   }
 }
+
+export async function updateFolder(req, res, next) {
+  try {
+    const updateFolder = await prisma.folder.update({
+      data: { name: req.body.name },
+      where: { id: req.body.id, ownerId: req.user.id },
+    });
+    res.redirect(req.get("referer"));
+  } catch (err) {
+    next(err);
+  }
+}

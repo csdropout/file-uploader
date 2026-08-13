@@ -20,7 +20,7 @@
       <span>Name</span>
       <span>Size</span>
       <span>Uploaded</span>
-      <span></span>
+      <span>Options</span>
     </div>
     <% if (locals.folders) { %>
     <% folders.forEach(folder => { %>
@@ -28,7 +28,12 @@
       <span><%= folder.name %></span>
       <span><%= folder.size || "-" %></span>
       <span><%= folder.uploadedAt.toLocaleString() %></span>
-      <span class="options-logo">&#8942</span>
+      <div class="options">
+        <button class="folder-rename-btn" data-name="<%= folder.name %>" data-id="<%= folder.id %>">Rename</button>
+        <form action="/drive/folders/<%= folder.id %>/delete" method="post">
+          <button type="submit">Delete</button>
+        </form>
+      </div>
     </div>
     <% }) %>
     <% } %>
@@ -48,6 +53,7 @@
     <% }) %>
     <% } %>
     <%- include('partials/create-folder.ejs') %>
+    <%- include('partials/rename-folder.ejs') %>
     <%- include('partials/upload-file.ejs') %>
   </div>
 </body>
