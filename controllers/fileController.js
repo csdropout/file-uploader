@@ -1,5 +1,46 @@
 import { prisma } from "../lib/prisma.js";
+import path from "path";
 
-export async function createFile(req, res, next) {}
-export async function getFile(req, res, next) {}
+export async function createFile(req, res, next) {
+  try {
+    const file = req.file;
+    const folderId = req.body.folderId || null;
+    console.log(file, folderId);
+
+    const fileUpload = await prisma.file.create({
+      data: {
+        name: file.originalname,
+        size: file.size,
+        url: file.path,
+        folderId: folderId,
+        ownerId: req.user.id,
+      },
+    });
+    if (folderId) {
+      res.redirect(`/drive/folders/${folderId}`);
+    } else {
+      res.redirect("/drive");
+    }
+  } catch (err) {
+    next(err);
+  }
+}
+export async function getFile(req, res, next) {
+  try {
+    const fileId = req.params.id;
+    const file = await prisma.file.findUnique({
+      where: { id: fileId, ownerId: req.user.id },
+    });
+
+    const filePath = path.resolve(file.url);
+    console.log(filePath);
+    res.download(filePath, file.name, (err) => {
+      if (err) {
+        throw err;
+      }
+    });
+  } catch (err) {
+    next(err);
+  }
+}
 export async function deleteFile(req, res, next) {}

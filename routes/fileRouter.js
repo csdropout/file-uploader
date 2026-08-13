@@ -1,8 +1,10 @@
 import { Router } from "express";
 import * as fileController from "../controllers/fileController.js";
+import multer from "multer";
+const upload = multer({ dest: "public/tmp/uploads" });
 const fileRouter = Router();
 
-fileRouter.post("/", fileController.createFile);
+fileRouter.post("/", upload.single("file"), fileController.createFile);
 fileRouter.get("/:id", fileController.getFile);
 fileRouter.delete("/:id", fileController.deleteFile);
 
