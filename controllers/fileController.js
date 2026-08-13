@@ -43,4 +43,14 @@ export async function getFile(req, res, next) {
     next(err);
   }
 }
-export async function deleteFile(req, res, next) {}
+export async function deleteFile(req, res, next) {
+  try {
+    const fileId = req.params.id;
+    const file = await prisma.file.delete({
+      where: { id: fileId, ownerId: req.user.id },
+    });
+    // delete from cloud storage
+  } catch (err) {
+    next(err);
+  }
+}
