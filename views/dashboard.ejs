@@ -38,7 +38,12 @@
       <span><%= file.name %></span>
       <span><%= file.size %></span>
       <span><%= file.uploadedAt.toLocaleString() %></span>
-      <span class="options-logo">&#8942</span>
+      <div class="options">
+        <a href="/drive/files/<%= file.id %>">Download</a>
+        <form action="/drive/files/<%= file.id %>/delete" method="post">
+          <button class="file-delete-btn">X</button>
+        </form>
+      </div>
     </div>
     <% }) %>
     <% } %>

@@ -50,6 +50,7 @@ export async function deleteFile(req, res, next) {
       where: { id: fileId, ownerId: req.user.id },
     });
     // delete from cloud storage
+    res.redirect(req.get("referer"));
   } catch (err) {
     next(err);
   }
