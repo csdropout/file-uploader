@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WaffleDrive</title>
   <script src="scripts/modals.js" defer></script>
+  <script src="scripts/folderItems.js" defer></script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -22,7 +23,7 @@
     </div>
     <% if (locals.folders) { %>
     <% folders.forEach(folder => { %>
-    <div class="folder-item">
+    <div class="folder-item" data-id="<%= folder.id %>">
       <span><%= folder.name %></span>
       <span><%= folder.size || "-" %></span>
       <span><%= folder.uploadedAt.toLocaleString() %></span>
