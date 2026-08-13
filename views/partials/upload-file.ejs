@@ -1,0 +1,8 @@
+<dialog id="upload-file-dialog">
+  <form method="post" action="/drive/files" enctype="multipart/form-data">
+    <input type="file" name="file" required>
+    <input type="text" name="parentId" value="<%= locals.folderId %>" hidden>
+    <button type="button" id="close-file-dialog-btn">Cancel</button>
+    <button type="submit">Upload</button>
+  </form>
+</dialog>

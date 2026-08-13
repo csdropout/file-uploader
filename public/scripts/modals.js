@@ -23,3 +23,28 @@ folderDialog.addEventListener("click", (e) => {
   }
 });
 // -------- Folder dialog -------
+
+// -------- File dialog ----------
+const openFileDialogBtn = document.querySelector("#open-file-dialog-btn");
+const closeFileDialogBtn = document.querySelector("#close-file-dialog-btn");
+const fileDialog = document.querySelector("#upload-file-dialog");
+
+openFileDialogBtn.addEventListener("click", () => {
+  fileDialog.showModal();
+});
+
+closeFileDialogBtn.addEventListener("click", () => {
+  fileDialog.close();
+});
+
+fileDialog.addEventListener("click", (e) => {
+  const rect = fileDialog.getBoundingClientRect();
+  const isInDialog =
+    rect.top <= e.clientY &&
+    rect.left <= e.clientX &&
+    e.clientX <= rect.right &&
+    e.clientY <= rect.bottom;
+  if (!isInDialog) {
+    fileDialog.close();
+  }
+});

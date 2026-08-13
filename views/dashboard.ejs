@@ -11,6 +11,7 @@
 <body>
   <%- include('partials/header.ejs') %>
   <button id="open-folder-dialog-btn">New Folder</button>
+  <button id="open-file-dialog-btn">New File</button>
   <div class="dashboard-content">
     <div class="dashboard-headers">
       <span>Name</span>
@@ -34,6 +35,7 @@
     <% }) %>
     <% } %>
     <%- include('partials/create-folder.ejs') %>
+    <%- include('partials/upload-file.ejs') %>
   </div>
 </body>
 
