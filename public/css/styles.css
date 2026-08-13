@@ -1,0 +1,12 @@
+.folder-item,
+.file-item {
+  border: 1px solid black;
+  padding: 1rem;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.folder-item:hover,
+.file-item:hover {
+  background-color: #e1e2e3;
+}
