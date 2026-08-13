@@ -7,6 +7,7 @@
   <title>WaffleDrive</title>
   <script src="scripts/modals.js" defer></script>
   <script src="scripts/folderItems.js" defer></script>
+  <script src="scripts/fileItems.js" defer></script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -33,7 +34,7 @@
     <% } %>
     <% if (locals.files) { %>
     <% files.forEach(file => { %>
-    <div class="file-item">
+    <div class="file-item" data-id="<%= file.id %>">
       <span><%= file.name %></span>
       <span><%= file.size %></span>
       <span><%= file.uploadedAt.toLocaleString() %></span>
