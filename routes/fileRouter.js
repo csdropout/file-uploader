@@ -7,5 +7,6 @@ const fileRouter = Router();
 fileRouter.post("/", upload.single("file"), fileController.createFile);
 fileRouter.get("/:id", fileController.getFile);
 fileRouter.post("/:id/delete", fileController.deleteFile);
+fileRouter.post("/update", fileController.updateFile);
 
 export default fileRouter;

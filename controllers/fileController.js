@@ -55,3 +55,15 @@ export async function deleteFile(req, res, next) {
     next(err);
   }
 }
+
+export async function updateFile(req, res, next) {
+  try {
+    const file = await prisma.file.delete({
+      data: { name: req.body.name },
+      where: { id: req.body.id, ownerId: req.user.id },
+    });
+    res.redirect(req.get("referer"));
+  } catch (err) {
+    next(err);
+  }
+}

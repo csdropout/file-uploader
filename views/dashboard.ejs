@@ -45,6 +45,7 @@
       <span><%= file.uploadedAt.toLocaleString() %></span>
       <div class="options">
         <a href="/drive/files/<%= file.id %>">Download</a>
+        <button class="file-rename-btn" data-name="<%= file.name %>" data-id="<%= file.id %>">Rename</button>
         <form action="/drive/files/<%= file.id %>/delete" method="post">
           <button class="file-delete-btn">X</button>
         </form>
@@ -54,6 +55,7 @@
     <% } %>
     <%- include('partials/create-folder.ejs') %>
     <%- include('partials/rename-folder.ejs') %>
+    <%- include('partials/rename-file.ejs') %>
     <%- include('partials/upload-file.ejs') %>
   </div>
 </body>
