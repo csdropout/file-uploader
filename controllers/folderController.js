@@ -38,8 +38,7 @@ export async function createFolder(req, res, next) {
       },
     });
 
-    console.log(folder);
-    res.send("Success!");
+    res.redirect(`/drive/folders/${parentId}`);
   } catch (err) {
     next(err);
   }
