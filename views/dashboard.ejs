@@ -14,7 +14,7 @@
   <%- include('partials/header.ejs') %>
   <nav class="breadcrumb">
     <ol>
-      <li><a href="/drive/folders">Home</a></li>
+      <li><a href="/drive">Home</a></li>
       <% breadcrumbs.forEach(folder => { %>
       <li><a href="/drive/folders/<%= folder.id %>"><%= folder.name %></a></li>
       <% }) %>
