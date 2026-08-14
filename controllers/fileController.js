@@ -6,7 +6,6 @@ export async function createFile(req, res, next) {
   try {
     const file = req.file;
     const folderId = req.body.folderId || null;
-    console.log(file, folderId);
 
     const uuid = crypto.randomUUID();
     const extension = path.extname(file.originalname);

@@ -28,11 +28,9 @@ export async function getFolder(req, res, next) {
     const folders = await prisma.folder.findMany({
       where: { parentId: folderId, ownerId: userId },
     });
-    console.log(folders);
     const files = await prisma.file.findMany({
       where: { ownerId: userId, folderId: folderId },
     });
-    console.log(files);
 
     const breadcrumbs = await getBreadcrumbs(folderId);
 
