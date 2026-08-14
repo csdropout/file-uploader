@@ -1,8 +1,20 @@
+:root {
+  --text: #111214;
+  --light-text: #fff;
+  --background: #f5f7f9;
+  --primary: #0052cc;
+  --secondary: #89b1ec;
+  --accent: #3f89f9;
+}
+
+body {
+  color: var(--text);
+  background-color: var(--background);
+}
+
 .folder-item,
 .file-item {
-  border: 1px solid black;
   padding: 1rem;
-  margin-bottom: 10px;
   cursor: pointer;
 }
 
@@ -30,6 +42,18 @@
   content: "→";
 }
 
+.dashboard-content {
+  padding: 1rem;
+}
+
 .dashboard-item.active {
-  background-color: skyblue;
+  background-color: var(--accent);
+}
+
+.dashboard-headers,
+.dashboard-item {
+  display: grid;
+  grid-template-columns: 5fr 1fr 2fr 1fr;
+  border-bottom: 1px solid gray;
+  align-items: center;
 }
