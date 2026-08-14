@@ -13,7 +13,14 @@
 
 <body>
   <%- include('partials/header.ejs') %>
-  <!-- breadcrumbs -->
+  <nav class="breadcrumb">
+    <ol>
+      <li><a href="/drive/folders">Home</a></li>
+      <% breadcrumbs.forEach(folder => { %>
+      <li><a href="/drive/folders/<%= folder.id %>"><%= folder.name %></a></li>
+      <% }) %>
+    </ol>
+  </nav>
   <button id="open-folder-dialog-btn">New Folder</button>
   <button id="open-file-dialog-btn">New File</button>
   <div class="dashboard-content">

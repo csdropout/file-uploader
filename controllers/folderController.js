@@ -1,5 +1,24 @@
 import { prisma } from "../lib/prisma.js";
 
+async function getBreadcrumbs(folderId) {
+  const breadcrumbs = [];
+  let currentId = folderId;
+
+  while (currentId) {
+    const folder = await prisma.folder.findUnique({
+      where: { id: currentId },
+      select: { id: true, name: true, parentId: true },
+    });
+
+    if (!folder) break;
+
+    breadcrumbs.unshift({ id: folder.id, name: folder.name });
+    currentId = folder.parentId;
+  }
+
+  return breadcrumbs;
+}
+
 export async function getFolder(req, res, next) {
   try {
     const folderId = req.params.id || null;
@@ -14,10 +33,13 @@ export async function getFolder(req, res, next) {
     });
     console.log(files);
 
+    const breadcrumbs = await getBreadcrumbs(folderId);
+
     res.render("dashboard", {
       folders,
       files,
       folderId,
+      breadcrumbs,
     });
   } catch (err) {
     next(err);
