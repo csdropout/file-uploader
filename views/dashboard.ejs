@@ -49,7 +49,7 @@
     <% files.forEach(file => { %>
     <div class="file-item" data-id="<%= file.id %>">
       <span><%= file.name %></span>
-      <span><%= file.size %></span>
+      <span><%= formatFileSize(file.size) %></span>
       <span><%= file.uploadedAt.toLocaleString() %></span>
       <div class="options">
         <a href="/drive/files/<%= file.id %>">Download</a>

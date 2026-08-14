@@ -1,4 +1,5 @@
 import { prisma } from "../lib/prisma.js";
+import { formatFileSize } from "../utils/formatFileSize.js";
 
 async function getBreadcrumbs(folderId) {
   const breadcrumbs = [];
@@ -40,6 +41,7 @@ export async function getFolder(req, res, next) {
       files,
       folderId,
       breadcrumbs,
+      formatFileSize,
     });
   } catch (err) {
     next(err);
