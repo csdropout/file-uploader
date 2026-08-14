@@ -18,20 +18,22 @@ export async function createFile(req, res, next) {
         upsert: false,
       });
 
-    const { data: urlData } = supabase.storage
+    const {
+      data: { publicUrl },
+    } = supabase.storage
       .from(process.env.SUPABASE_BUCKET)
       .getPublicUrl(filePath, {
         download: file.originalname,
         upsert: false,
       });
 
-    const url = urlData.publicUrl;
-
     const fileUpload = await prisma.file.create({
       data: {
+        id: uuid,
         name: file.originalname,
         size: file.size,
-        url: url,
+        url: publicUrl,
+        filePath: filePath,
         folderId: folderId,
         ownerId: req.user.id,
       },
@@ -61,7 +63,10 @@ export async function deleteFile(req, res, next) {
     const file = await prisma.file.delete({
       where: { id: fileId, ownerId: req.user.id },
     });
-    // delete from cloud storage
+
+    const { data } = await supabase.storage
+      .from(process.env.SUPABASE_BUCKET)
+      .remove(file.filePath);
     res.redirect(req.get("referer"));
   } catch (err) {
     next(err);
