@@ -1,7 +1,7 @@
 import { Router } from "express";
 import * as fileController from "../controllers/fileController.js";
 import multer from "multer";
-const upload = multer({ dest: "public/tmp/uploads" });
+const upload = multer({ storage: multer.memoryStorage() });
 const fileRouter = Router();
 
 fileRouter.post("/", upload.single("file"), fileController.createFile);

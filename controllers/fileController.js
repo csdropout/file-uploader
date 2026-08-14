@@ -1,5 +1,6 @@
 import { prisma } from "../lib/prisma.js";
 import path from "path";
+import { supabase } from "../lib/supabase.js";
 
 export async function createFile(req, res, next) {
   try {
@@ -7,11 +8,30 @@ export async function createFile(req, res, next) {
     const folderId = req.body.folderId || null;
     console.log(file, folderId);
 
+    const uuid = crypto.randomUUID();
+    const extension = path.extname(file.originalname);
+    const filePath = `${req.user.id}/${uuid}${extension}`;
+    const { data } = await supabase.storage
+      .from(`${process.env.SUPABASE_BUCKET}`)
+      .upload(filePath, file.buffer, {
+        contentType: file.mimetype,
+        upsert: false,
+      });
+
+    const { data: urlData } = supabase.storage
+      .from(process.env.SUPABASE_BUCKET)
+      .getPublicUrl(filePath, {
+        download: file.originalname,
+        upsert: false,
+      });
+
+    const url = urlData.publicUrl;
+
     const fileUpload = await prisma.file.create({
       data: {
         name: file.originalname,
         size: file.size,
-        url: file.path,
+        url: url,
         folderId: folderId,
         ownerId: req.user.id,
       },
@@ -27,18 +47,10 @@ export async function createFile(req, res, next) {
 }
 export async function getFile(req, res, next) {
   try {
-    const fileId = req.params.id;
     const file = await prisma.file.findUnique({
-      where: { id: fileId, ownerId: req.user.id },
+      where: { id: req.params.id, ownerId: req.user.id },
     });
-
-    const filePath = path.resolve(file.url);
-    console.log(filePath);
-    res.download(filePath, file.name, (err) => {
-      if (err) {
-        throw err;
-      }
-    });
+    res.redirect(file.url);
   } catch (err) {
     next(err);
   }
