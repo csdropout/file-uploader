@@ -29,3 +29,7 @@
   margin: 0 0.25rem;
   content: "→";
 }
+
+.dashboard-item.active {
+  background-color: skyblue;
+}
