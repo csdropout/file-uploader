@@ -8,6 +8,14 @@ export function requireLogin(req, res, next) {
   return res.redirect("/login");
 }
 
+export function redirectIfAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect("/drive");
+  }
+
+  return next();
+}
+
 export async function requireFolderAccess(req, res, next) {
   const folder = await prisma.folder.findUnique({
     where: { id: req.params.id },
