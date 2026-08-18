@@ -212,3 +212,26 @@ label[for="file"]:hover {
 .form-card-container form p {
   text-align: center;
 }
+
+.hero-content {
+  display: flex;
+  max-width: 700px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.hero-content p {
+  text-align: start;
+}
+
+.hero-content a {
+  background-color: var(--primary);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  margin-top: 10px;
+}
