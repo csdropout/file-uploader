@@ -7,6 +7,7 @@
   <title>WaffleDrive</title>
   <script src="/scripts/modals.js" defer></script>
   <script src="/scripts/dashboard-items.js" defer></script>
+  <link rel="stylesheet" href="/css/reset.css">
   <link rel="stylesheet" href="/css/styles.css">
 </head>
 
@@ -20,8 +21,10 @@
       <% }) %>
     </ol>
   </nav>
-  <button id="open-folder-dialog-btn">New Folder</button>
-  <button id="open-file-dialog-btn">New File</button>
+  <div class="dialog-button-group">
+    <button id="open-folder-dialog-btn">New Folder</button>
+    <button id="open-file-dialog-btn">New File</button>
+  </div>
   <div class="dashboard-content">
     <div class="dashboard-headers">
       <span>Name</span>
