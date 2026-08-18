@@ -176,3 +176,39 @@ label[for="file"] {
 label[for="file"]:hover {
   background-color: #e1e2e3;
 }
+
+.form-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-row {
+  margin-bottom: 10px;
+}
+
+.form-row label {
+  display: block;
+}
+
+.form-row input {
+  line-height: 1.5;
+  padding-inline: 10px;
+}
+
+.form-card-container form button[type="submit"] {
+  width: 100%;
+  font-size: 1rem;
+  background-color: var(--primary);
+  color: white;
+}
+
+.form-card-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-card-container form p {
+  text-align: center;
+}
