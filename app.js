@@ -8,6 +8,7 @@ import { PrismaSessionStore } from "@quixo3/prisma-session-store";
 import authRouter from "./routes/authRouter.js";
 import folderRouter from "./routes/folderRouter.js";
 import fileRouter from "./routes/fileRouter.js";
+import indexRouter from "./routes/indexRouter.js";
 
 const app = express();
 app.set("views", "./views");
@@ -40,10 +41,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
-
+app.use("/", indexRouter);
 app.use("/", authRouter);
 app.use("/drive", folderRouter);
 app.use("/drive/files", fileRouter);
