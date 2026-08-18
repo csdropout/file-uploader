@@ -1,11 +1,11 @@
 <dialog id="rename-folder-dialog">
-  <form method="post" action="/drive/folders/update">
-    <div class="form-row">
-      <label for="name">Rename folder</label>
-      <input type="text" name="name" id="name" required>
-    </div>
+  <form class="dialog-form" method="post" action="/drive/folders/update">
+    <label for="name">Rename folder</label>
+    <input type="text" name="name" id="name" required>
     <input type="hidden" name="id">
-    <button id="close-rename-folder-dialog-btn" type="button">Cancel</button>
-    <button type="submit">Update</button>
+    <div class="dialog-form-button-group">
+      <button id="close-rename-folder-dialog-btn" type="button">Cancel</button>
+      <button type="submit">Update</button>
+    </div>
   </form>
 </dialog>

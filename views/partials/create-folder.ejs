@@ -1,11 +1,11 @@
 <dialog id="folder-dialog">
-  <form method="post" action="/drive/folders">
-    <div class="form-row">
-      <label for="name">New folder</label>
-      <input type="text" name="name" id="name" required>
-    </div>
+  <form class="dialog-form" method="post" action="/drive/folders">
+    <label for="name">New folder</label>
+    <input type="text" name="name" id="name" required>
     <input type="text" name="parentId" value="<%= locals.folderId%>" hidden>
-    <button id="close-folder-dialog-btn" type="button">Cancel</button>
-    <button type="submit">Create</button>
+    <div class="dialog-form-button-group">
+      <button id="close-folder-dialog-btn" type="button">Cancel</button>
+      <button type="submit">Create</button>
+    </div>
   </form>
 </dialog>

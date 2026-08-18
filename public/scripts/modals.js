@@ -28,6 +28,8 @@ folderDialog.addEventListener("click", (e) => {
 const openFileDialogBtn = document.querySelector("#open-file-dialog-btn");
 const closeFileDialogBtn = document.querySelector("#close-file-dialog-btn");
 const fileDialog = document.querySelector("#upload-file-dialog");
+const fileInput = document.querySelector("#file");
+const fileDetails = document.querySelector("#file-details");
 
 openFileDialogBtn.addEventListener("click", () => {
   fileDialog.showModal();
@@ -48,6 +50,21 @@ fileDialog.addEventListener("click", (e) => {
     fileDialog.close();
   }
 });
+
+fileInput.addEventListener("change", () => {
+  const file = fileInput.files[0];
+  fileDetails.textContent = `File name: ${file.name}; file size: ${returnFileSize(file.size)}`;
+});
+
+function returnFileSize(number) {
+  if (number < 1e3) {
+    return `${number} bytes`;
+  } else if (number >= 1e3 && number < 1e6) {
+    return `${(number / 1e3).toFixed(1)} KB`;
+  }
+  return `${(number / 1e6).toFixed(1)} MB`;
+}
+
 // -------- File dialog ----------
 
 // -------- Rename folder dialog ---------
