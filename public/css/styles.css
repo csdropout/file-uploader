@@ -235,3 +235,13 @@ label[for="file"]:hover {
   text-decoration: none;
   margin-top: 10px;
 }
+
+svg.icon {
+  display: inline;
+}
+
+.item-name {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
