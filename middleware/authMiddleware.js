@@ -34,9 +34,10 @@ export async function requireFolderAccess(req, res, next) {
 }
 
 export async function requireFileAccess(req, res, next) {
+  const fileId = req.params.id || req.body.id;
   const file = await prisma.file.findUnique({
-    where: { id: req.params.id },
-    select: { ownerId: req.user.id },
+    where: { id: fileId, ownerId: req.user.id },
+    select: { ownerId: true },
   });
 
   if (!file) {
