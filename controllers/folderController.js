@@ -60,7 +60,11 @@ export async function createFolder(req, res, next) {
       },
     });
 
-    res.redirect(`/drive/folders/${parentId}`);
+    if (parentId) {
+      res.redirect(`/drive/folders/${parentId}`);
+    } else {
+      res.redirect(`/drive`);
+    }
   } catch (err) {
     next(err);
   }
